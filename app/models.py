@@ -1,7 +1,9 @@
-from app import db, login_manager
+from app import db
+from app import login_manager
 from flask_login import UserMixin
 from app import bcrypt
 from sqlalchemy.ext.hybrid import hybrid_property
+from datetime import datetime
 
 
 class User(UserMixin, db.Model):
@@ -67,6 +69,9 @@ class ProductCategory(db.Model):
         backref='productcategory',
         lazy='dynamic')
 
+    def __repr__(self):
+        return '<Product Category: {}>'.format(self.category)
+
 
 class Product(db.Model):
     """
@@ -85,3 +90,22 @@ class Product(db.Model):
         'SalesTransaction',
         backref='product',
         lazy='dynamic')
+
+    def __repr__(self):
+        return '<Product: {}>'.format(self.description)
+
+
+class SalesTransaction(db.Model):
+    """
+    Create a sales_transaction table
+    """
+
+    __tablename__ = 'sales_transaction'
+
+    id = db.Column(db.Integer, primary_key=True)
+    transaction_timestamp = db.Column(db.DateTime, default=datetime.now)
+    user_id = db.Column(db.ForeignKey('users.id'))
+    product_id = db.Column(db.ForeignKey('products.id'))
+
+    def __repr__(self):
+        return '<Sales Transaction #: {}>'.format(self.id)
