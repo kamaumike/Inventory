@@ -52,3 +52,17 @@ def load_user(user_id):
     based on the supplied user_id
     """
     return User.query.get(int(user_id))
+
+
+class ProductCategory(db.Model):
+    """
+    Create a product_category table
+    """
+    __tablename__ = 'product_categories'
+
+    id = db.Column(db.Integer, primary_key=True)
+    category = db.Column(db.String(60), index=True, unique=True)
+    products = db.relationship(
+        'Product',
+        backref='productcategory',
+        lazy='dynamic')
