@@ -14,6 +14,8 @@ manager = Manager(app)
 #'db' is a command to be run
 manager.add_command('db', MigrateCommand)
 
+from app import models
+
 # Start the script manager
 if __name__ == '__main__':
     manager.run()
