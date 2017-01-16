@@ -2,12 +2,16 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import app_config
 from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
 
 # Create an SQLAlchemy object
 db = SQLAlchemy()
 
 # Create a LoginManager object
 login_manager = LoginManager()
+
+# Create a Bcrypt object
+bcrypt = Bcrypt()
 
 
 def create_app(config_name):
@@ -31,5 +35,8 @@ def create_app(config_name):
 
     # Redirect users to the login page
     login_manager.login_view = "auth.login"
+
+    # Initialize the Bcrypt object
+    bcrypt.init_app(app)
 
     return app
