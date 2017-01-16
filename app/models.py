@@ -66,3 +66,22 @@ class ProductCategory(db.Model):
         'Product',
         backref='productcategory',
         lazy='dynamic')
+
+
+class Product(db.Model):
+    """
+    Create a products table
+    """
+
+    __tablename__ = 'products'
+
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(100), index=True)
+    quantity = db.Column(db.Integer)
+    unit_price = db.Column(db.Float)
+    date_added = db.Column(db.DateTime, default=datetime.now)
+    category_id = db.Column(db.ForeignKey('product_categories.id'))
+    sales = db.relationship(
+        'SalesTransaction',
+        backref='product',
+        lazy='dynamic')
