@@ -39,4 +39,8 @@ def create_app(config_name):
     # Initialize the Bcrypt object
     bcrypt.init_app(app)
 
+    # Import & register the admin blueprint
+    from .admin import admin
+    app.register_blueprint(admin, url_prefix='/admin')
+
     return app
