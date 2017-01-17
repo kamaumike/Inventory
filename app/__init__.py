@@ -47,4 +47,8 @@ def create_app(config_name):
     from .auth import auth
     app.register_blueprint(auth)
 
+    # Import & register the home blueprint
+    from .home import home
+    app.register_blueprint(home)
+
     return app
