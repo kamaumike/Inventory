@@ -21,3 +21,12 @@ class SignUpForm(FlaskForm):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError(
                 'Email is already exists! Use a different email.')
+
+
+class LoginForm(FlaskForm):
+    """
+    The Login Form
+    """
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')
