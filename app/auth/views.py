@@ -1,7 +1,7 @@
 from flask import flash, redirect, render_template, url_for
 from flask_login import login_required, login_user, logout_user
 from . import auth
-from froms import SignUpForm, LoginForm
+from forms import SignUpForm, LoginForm
 from ..import db
 from ..models import User
 
@@ -51,7 +51,7 @@ def login():
         if user is not None and user.verify_password(form.password.data):
             # Login the user
             login_user(user)
-            
+
             # Display message if login successful
             flash("Login successful")
 
