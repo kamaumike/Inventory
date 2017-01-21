@@ -51,6 +51,9 @@ def login():
         if user is not None and user.verify_password(form.password.data):
             # Login the user
             login_user(user)
+            
+            # Display message if login successful
+            flash("Login successful")
 
             # Redirect to the dashboard page
             return redirect(url_for("home.dashboard"))
