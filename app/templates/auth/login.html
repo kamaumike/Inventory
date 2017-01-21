@@ -1,0 +1,17 @@
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+	<br><br><br><br><br>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<div class="panel-title">Please Login</div>
+		</div><!--/.panel-heading-->
+		<div class="panel-body">
+			{{ utils.flashed_messages() }}
+			<!-- Generate the Login form -->
+            {{ wtf.quick_form(form) }}			
+		</div><!--/.panel-body-->
+	</div><!--/.panel panel-info-->
+{% endblock %}
