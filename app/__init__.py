@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config import app_config
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+from flask_bootstrap import Bootstrap
 
 # Create an SQLAlchemy object
 db = SQLAlchemy()
@@ -38,6 +39,9 @@ def create_app(config_name):
 
     # Initialize the Bcrypt object
     bcrypt.init_app(app)
+
+    # Create and initialize the Bootstrap object
+    Bootstrap(app)
 
     # Import & register the admin blueprint
     from .admin import admin
