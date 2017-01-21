@@ -27,8 +27,36 @@ def signup():
         db.session.commit()
         flash("You successfully signed up.")
 
-        # Redirect to the login page
+        # Redirect to the login page if sign up is successful
         return redirect(url_for("auth.login"))
 
     # Render the sign up template
     return render_template("auth/signup.html", form=form)
+
+
+@auth.route('/login', methods=['GET', 'POST'])
+def login():
+    """
+    Login a user
+    """
+    # Create an instance of the LoginForm
+    form = LoginForm()
+
+    # Validate the LoginForm on submit
+    if form.validate_on_submit():
+        # Search the user from the User table based on email supplied
+        user = User.query.filter_by(email=form.email.data).first()
+
+        # Verify if the users' login credentials are correct
+        if user is not None and user.verify_password(form.password.data):
+            # Login the user
+            login_user(user)
+
+            # Redirect to the dashboard page
+            return redirect(url_for("home.dashboard"))
+        # Display message if the users' login credentials are incorrect
+        else:
+            flash("Invalid email or password! Please try again.")
+
+    # Render the login template
+    return render_template("auth/login.html", form=form)
