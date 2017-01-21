@@ -60,3 +60,16 @@ def login():
 
     # Render the login template
     return render_template("auth/login.html", form=form)
+
+
+@auth.route('/logout')
+@login_required
+def logout():
+    """
+    Logout a user
+    """
+    logout_user()
+    flash("Successfully loged out.")
+
+    # Redirect to the login page
+    return redirect(url_for("auth.login"))
