@@ -25,7 +25,7 @@ def signup():
         # Add the user to the database
         db.session.add(user)
         db.session.commit()
-        flash("You successfully signed up.")
+        flash("You successfully signed up.", "success")
 
         # Redirect to the login page if sign up is successful
         return redirect(url_for("auth.login"))
@@ -53,13 +53,13 @@ def login():
             login_user(user)
 
             # Display message if login successful
-            flash("Login successful")
+            flash("Login successful", "success")
 
             # Redirect to the dashboard page
             return redirect(url_for("home.dashboard"))
         # Display message if the users' login credentials are incorrect
         else:
-            flash("Invalid email or password! Please try again.")
+            flash("Invalid email or password! Please try again.", "danger")
 
     # Render the login template
     return render_template("auth/login.html", form=form)
@@ -72,7 +72,7 @@ def logout():
     Logout a user
     """
     logout_user()
-    flash("Successfully loged out.")
+    flash("Successfully logged out.", "success")
 
     # Redirect to the login page
     return redirect(url_for("auth.login"))
