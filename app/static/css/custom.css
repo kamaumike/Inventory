@@ -1,5 +1,12 @@
 /*Custom style sheet*/
 
+/*Home Page*/
+
+body, h1, h2, h3 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+}
+
 .intro-header {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -27,12 +34,12 @@
 }
 
 .footer-bottom {
-	background: #E3E3E3;
-	border-top: 5px solid #DDDDDD;
-	padding-top: 10px;
-	padding-bottom: 10px;
+    background: #E3E3E3;
+    border-top: 5px solid #DDDDDD;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .footer-bottom p.text-center {
-	padding-top: 6px;
+    padding-top: 6px;
 }
