@@ -3,15 +3,15 @@
 {% extends "base.html" %}
 {% block title %}Sign Up{% endblock %}
 {% block content %}
-<br><br><br><br>
+    <br><br><br><br>
     <div class="content-section">
+        {{ utils.flashed_messages() }}
         <div class="center">    
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="panel-title">Sign Up</div>
                 </div><!--/.panel-heading-->
                 <div class="panel-body">
-                    {{ utils.flashed_messages() }}
                     <!-- Generate the Sign Up form -->
                     {{ wtf.quick_form(form) }}          
                 </div><!--/.panel-body-->
